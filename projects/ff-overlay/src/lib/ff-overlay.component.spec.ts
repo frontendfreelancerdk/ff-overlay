@@ -1,6 +1,7 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { FFOverlayComponent } from './ff-overlay.component';
+import {FFOverlayComponent} from './ff-overlay.component';
+import {BrowserDynamicTestingModule} from '@angular/platform-browser-dynamic/testing';
 
 describe('FFOverlayComponent', () => {
   let component: FFOverlayComponent;
@@ -8,9 +9,15 @@ describe('FFOverlayComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FFOverlayComponent ]
+      declarations: [FFOverlayComponent],
     })
-    .compileComponents();
+      .compileComponents();
+
+    TestBed.overrideModule(BrowserDynamicTestingModule, {
+      set: {
+        entryComponents: [FFOverlayComponent]
+      }
+    });
   }));
 
   beforeEach(() => {
