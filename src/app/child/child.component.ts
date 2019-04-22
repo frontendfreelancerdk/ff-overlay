@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, ElementRef, OnInit} from '@angular/core';
+import {FFOverlayService} from 'ff-overlay';
 
 @Component({
   selector: 'ff-child',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChildComponent implements OnInit {
 
-  constructor() { }
+  constructor(private service: FFOverlayService, private el: ElementRef) {
+  }
 
   ngOnInit() {
   }
 
+  close() {
+    this.service.removeChild(this.el.nativeElement);
+  }
 }

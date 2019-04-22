@@ -14,7 +14,7 @@ import {Component} from '@angular/core';
     height: 100%;
   }
 
-  :host > * {
+  :host /deep/ > * {
     pointer-events: auto;
   }`]
 })
