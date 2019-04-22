@@ -60,9 +60,10 @@ export class FFOverlayService implements OnDestroy {
   }
 
   public removeChild(domElement) {
-    this.renderer.removeChild(this.getOverlay(), domElement);
-    if (!this.getOverlay().children.length) {
+    if (this.getOverlay().children.length === 1 && this.getOverlay().children[0] === domElement) {
       this.destroy();
+    } else {
+      this.renderer.removeChild(this.getOverlay(), domElement);
     }
   }
 
