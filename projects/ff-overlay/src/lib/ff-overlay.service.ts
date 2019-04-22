@@ -24,7 +24,6 @@ export class FFOverlayService implements OnDestroy {
     rendererFactory: RendererFactory2
   ) {
     this.renderer = rendererFactory.createRenderer(null, null);
-    this._overlay = this.appendComponent(FFOverlayComponent);
   }
 
   private appendComponent(component: any, target?: any) {
@@ -50,10 +49,35 @@ export class FFOverlayService implements OnDestroy {
   }
 
   public getOverlay() {
+    if (!this._overlay) {
+      this.init();
+    }
     return this._overlay.componentRef.hostView.rootNodes[0];
   }
 
+  public appendChild(domElement) {
+    this.renderer.appendChild(this.getOverlay(), domElement);
+  }
+
+  public removeChild(domElement) {
+    this.renderer.removeChild(this.getOverlay(), domElement);
+    if (!this.getOverlay().children.length) {
+      this.destroy();
+    }
+  }
+
+  public init(target?: any) {
+    if (!this._overlay) {
+      this._overlay = this.appendComponent(FFOverlayComponent, target);
+    }
+  }
+
+  public destroy() {
+    this._overlay && this._overlay.destroy();
+    this._overlay = null;
+  }
+
   ngOnDestroy(): void {
-    this._overlay.destroy();
+    this.destroy();
   }
 }

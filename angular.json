@@ -152,7 +152,8 @@
           "options": {
             "main": "projects/ff-overlay/src/test.ts",
             "tsConfig": "projects/ff-overlay/tsconfig.spec.json",
-            "karmaConfig": "projects/ff-overlay/karma.conf.js"
+            "karmaConfig": "projects/ff-overlay/karma.conf.js",
+            "codeCoverage": true
           }
         },
         "lint": {
